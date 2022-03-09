@@ -1,12 +1,8 @@
-import react from "react";
-import logo from "./logo.svg";
 import "./App.css";
-import image from "./bg.jpg";
 import nft from "./nft.gif";
-import CounterInput from "react-bootstrap-counter";
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { onGetMintData, onCheckMintable } from "./redux/actions/mint";
+import { onGetMintData } from "./redux/actions/mint";
 import { mintNft } from "./web3/web3";
 import { FaPlus, FaMinus } from "react-icons/fa";
 
