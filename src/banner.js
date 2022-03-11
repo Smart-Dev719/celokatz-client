@@ -2,9 +2,10 @@ import "./App.css";
 import nft from "./nft.gif";
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { onGetMintData } from "./redux/actions/mint";
+import { onCheckMintable, onGetMintData } from "./redux/actions/mint";
 import { mintNft } from "./web3/web3";
 import { FaPlus, FaMinus } from "react-icons/fa";
+import swal from 'sweetalert';
 
 const Banner = (props) => {
   const {
@@ -22,7 +23,6 @@ const Banner = (props) => {
   const [viewModal, setViewModal] = useState(false);
   const [networkId, setNetworkId] = useState();
   const [modal, setModal] = useState(false);
-  const [count, setCount] = useState(1);
 
   useEffect(async () => {
     const web3 = window.web3;
@@ -32,6 +32,12 @@ const Banner = (props) => {
       setNetworkId(networkId);
     });
   });
+
+  useEffect(async () => {
+    if (account) {
+      dispatch(onCheckMintable({ address: account }));
+    }
+  }, [account]);
 
   useEffect(async () => {
     if (mintable.count || mintable.failedMsg) {
@@ -76,25 +82,29 @@ const Banner = (props) => {
       </div>
       <div className="CounterInput">
         <span
-          className="ArrowIcon leftIcon"
-          onChange={() => {
-            if (count != 10) {
-              setSelectedCount(count + 1);
-            }
-          }}
-        >
-          <FaPlus />
-        </span>
-        <span className="CounterValue">{count}</span>
-        <span
-          className="ArrowIcon rightIcon"
-          onChange={() => {
-            if (count != 1) {
-              setSelectedCount(count - 1);
+          className="ArrowIcon leftIcon "
+          onClick={() => {
+            if (selectedCount > 1) {
+              setSelectedCount(selectedCount - 1);
             }
           }}
         >
           <FaMinus />
+        </span>
+        <span className="CounterValue">{selectedCount}</span>
+        <span
+          className="ArrowIcon rightIcon"
+          onClick={() => {
+            if (account) {
+              if (selectedCount < mintable.count) {
+                setSelectedCount(selectedCount + 1);
+              }
+            } else {
+              swal("Sorry!", "Please connect wallet, first!", "warning");
+            }
+          }}
+        >
+          <FaPlus />
         </span>
       </div>
       {/* <button onClick={connectToMetamask}>Connect wallet</button> */}
