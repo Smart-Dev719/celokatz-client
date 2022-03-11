@@ -79,7 +79,7 @@ const Banner = (props) => {
           className="ArrowIcon leftIcon"
           onClick={() => {
             if (count != 10) {
-              setCount(count + 1);
+              setSelectedCount(count + 1);
             }
           }}
         >
@@ -90,7 +90,7 @@ const Banner = (props) => {
           className="ArrowIcon rightIcon"
           onClick={() => {
             if (count != 1) {
-              setCount(count - 1);
+              setSelectedCount(count - 1);
             }
           }}
         >
