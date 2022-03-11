@@ -77,7 +77,7 @@ const Banner = (props) => {
       <div className="CounterInput">
         <span
           className="ArrowIcon leftIcon"
-          onClick={() => {
+          onChange={() => {
             if (count != 10) {
               setSelectedCount(count + 1);
             }
@@ -88,7 +88,7 @@ const Banner = (props) => {
         <span className="CounterValue">{count}</span>
         <span
           className="ArrowIcon rightIcon"
-          onClick={() => {
+          onChange={() => {
             if (count != 1) {
               setSelectedCount(count - 1);
             }
