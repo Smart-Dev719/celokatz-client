@@ -18,6 +18,8 @@
 body {
   min-height: 100%;
   background-image: url(./bg.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .container {
@@ -215,6 +217,14 @@ button:hover {
   color: #000;
   background-color: #fff;
   font-weight: 700;
+}
+.MintBtn.disable {
+  opacity: 0.5;
+}
+.MintBtn.disable:hover {
+  cursor: not-allowed;
+  background-color: #60cfff;
+  color: #fff;
 }
 
 .network-err-msg {

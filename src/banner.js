@@ -45,6 +45,7 @@ const Banner = (props) => {
     }
     if (mintable.failedMsg) {
       setMintLoading(false);
+      swal("Sorry!", mintable.failedMsg, "warning");
     }
     if (mintable.mintData.success == true) {
       const price = mintable.mintData.price;
@@ -114,9 +115,15 @@ const Banner = (props) => {
       </div>
       {/* <button onClick={connectToMetamask}>Connect wallet</button> */}
       {metamaskConnected ? (
-        <button className="MintBtn" onClick={handleMint}>
-          MINT YOUR NAVIKATZ NFTS!
-        </button>
+        mintable.count > 0 ? (
+          <button className="MintBtn" onClick={handleMint}>
+            MINT YOUR NAVIKATZ NFTS!
+          </button>
+        ) : (
+          <button className="MintBtn disable">
+            MINT YOUR NAVIKATZ NFTS!
+          </button>
+        )
       ) : (
         <button className="MintBtn" onClick={connectToMetamask}>
           CONNECT WALLET
