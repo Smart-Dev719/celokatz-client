@@ -38,7 +38,7 @@ export const onCheckMintable = ({
             dispatch({
                 type: CHECK_MINTABLE_FAILED,
                 payload: {
-                    failedMsg: "Network Error",
+                    failedMsg: "Sale is closed now, will start soon!",
                 },
             });
             console.log("error!!!!", err);
