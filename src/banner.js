@@ -21,17 +21,17 @@ const Banner = (props) => {
   const [mintLoading, setMintLoading] = useState(false);
   const [mintStatus, setMintStatus] = useState(false);
   const [viewModal, setViewModal] = useState(false);
-  const [networkId, setNetworkId] = useState();
+  // const [networkId, setNetworkId] = useState();
   const [modal, setModal] = useState(false);
 
-  useEffect(async () => {
-    const web3 = window.web3;
-    const networkId = await web3.eth.net.getId();
-    setNetworkId(networkId);
-    window.ethereum.on("networkChanged", (networkId) => {
-      setNetworkId(networkId);
-    });
-  });
+  // useEffect(async () => {
+  //   const web3 = window.web3;
+  //   const networkId = await web3.eth.net.getId();
+  //   setNetworkId(networkId);
+  //   window.ethereum.on("networkChanged", (networkId) => {
+  //     setNetworkId(networkId);
+  //   });
+  // });
 
   useEffect(async () => {
     if (account) {
@@ -84,6 +84,7 @@ const Banner = (props) => {
         <span
           className="ArrowIcon leftIcon "
           onClick={() => {
+            console.log("minus");
             if (selectedCount > 1) {
               setSelectedCount(selectedCount - 1);
             }
@@ -95,13 +96,18 @@ const Banner = (props) => {
         <span
           className="ArrowIcon rightIcon"
           onClick={() => {
-            if (account) {
-              if (selectedCount < mintable.count) {
-                setSelectedCount(selectedCount + 1);
-              }
-            } else {
-              swal("Sorry!", "Please connect wallet, first!", "warning");
+            console.log("plus");
+            if (selectedCount < mintable.count) {
+              setSelectedCount(selectedCount + 1);
             }
+            // if (account) 
+            // {
+            //   if (selectedCount < mintable.count) {
+            //     setSelectedCount(selectedCount + 1);
+            //   }
+            // } else {
+            //   swal("Sorry!", "Please connect wallet, first!", "warning");
+            // }          
           }}
         >
           <FaPlus />
