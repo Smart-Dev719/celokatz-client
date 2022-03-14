@@ -97,17 +97,16 @@ const Banner = (props) => {
           className="ArrowIcon rightIcon"
           onClick={() => {
             console.log("plus");
-            if (selectedCount < mintable.count) {
-              setSelectedCount(selectedCount + 1);
+            // if (selectedCount < mintable.count) {
+            //   setSelectedCount(selectedCount + 1);
+            // }
+            if (account) {
+              if (selectedCount < mintable.count) {
+                setSelectedCount(selectedCount + 1);
+              }
+            } else {
+              swal("Sorry!", "Please connect wallet, first!", "warning");
             }
-            // if (account) 
-            // {
-            //   if (selectedCount < mintable.count) {
-            //     setSelectedCount(selectedCount + 1);
-            //   }
-            // } else {
-            //   swal("Sorry!", "Please connect wallet, first!", "warning");
-            // }          
           }}
         >
           <FaPlus />
