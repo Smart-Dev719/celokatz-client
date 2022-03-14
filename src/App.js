@@ -15,6 +15,8 @@ function App() {
   const [metamaskConnected, setMetamaskConnected] = useState(false);
   const [account, setAccount] = useState();
   const [preLoading, setPreLoading] = useState(false);
+  const [networkId, setNetworkId] = useState();
+  const [isMetamask, setIsMetamask] = useState(true);
 
   useEffect(() => {
     async function listenMMAccount() {
@@ -37,12 +39,16 @@ function App() {
     } else if (window.web3) {
       window.web3 = new Web3(window.web3.currentProvider);
     } else {
-      window.alert(
-        "Non-Ethereum browser detected. You should consider trying MetaMask!"
-      );
+      // window.alert(
+      //   "Non-Ethereum browser detected. You should consider trying MetaMask!"
+      // );
+      setIsMetamask(false);
+      return false;
     }
     const web3 = window.web3;
     const accounts = await web3.eth.getAccounts();
+    const networkId = await web3.eth.net.getId();
+    setNetworkId(networkId);
     if (accounts.length == 0) {
       setMetamaskConnected(false);
     } else {
@@ -55,6 +61,16 @@ function App() {
   };
   return (
     <Provider store={store}>
+      {networkId != 42220 && metamaskConnected && (
+        <div className="network-err-msg">
+          <h4>Please switch to Celo mainnet. <a href="https://medium.com/defi-for-the-people/how-to-set-up-metamask-with-celo-912d698fcafe" target="_blank" rel="noreferrer">How do I set up Metamask on Celo?</a></h4>
+        </div>
+      )}
+      {!isMetamask && (
+        <div className="network-err-msg">
+          <h4>You should consider trying <a href="http://metamask.io/" target="_blank" rel="noreferrer">MetaMask!</a></h4>
+        </div>
+      )}
       <div className="App">
         <Navbar />
         <Banner
