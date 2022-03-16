@@ -236,6 +236,69 @@ button:hover {
   text-align: center;
 }
 
+.ConnectModal {
+  top: 50%;
+  left: 50%;
+  right: auto;
+  bottom: auto;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  background-color: #02003a;
+  position: absolute;
+  width: 750px;
+  border-radius: 20px;
+  padding: 30px 20px;
+  font-family: "Marcellus SC";
+  font-weight: 900;
+  border: 1px solid white;
+}
+
+.ModalLogo {
+  width: 220px;
+}
+
+.ConnectModalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.ModalHeaderText {
+  font-size: 30px;
+}
+
+.ConnectModalMain {
+  row-gap: 40px;
+}
+
+.ModalCloseBtn {
+  color: #f70101;
+  cursor: pointer;
+  font-size: 33px;
+  float: right !important;
+}
+
+.ModalTitle {
+  color: #94d37f;
+  font-size: 60px;
+  text-align: center;
+  display: block !important;
+}
+
+.ModalText {
+  color: #9dfdc8;
+  font-size: 26px;
+  text-align: center;
+  display: block !important;
+}
+
+.ModalHeader {
+  width: 100%;
+}
+
 @media (max-width: 580px) {
   .nft img {
     width: 90%;

@@ -6,6 +6,9 @@ import { onCheckMintable, onGetMintData } from "./redux/actions/mint";
 import { mintNft } from "./web3/web3";
 import { FaPlus, FaMinus } from "react-icons/fa";
 import swal from 'sweetalert';
+import Modal from "react-modal";
+import { CloseOutlined } from '@ant-design/icons';
+import logo from "./logo.png";
 
 const Banner = (props) => {
   const { metamaskConnected, account, setMetamaskConnnected } = props;
@@ -79,10 +82,33 @@ const Banner = (props) => {
   };
 
   return (
+
     <div className="Banner">
+
       <div className="nft">
         <img src={nft} alt="" draggable={false} />
       </div>
+      <Modal
+        isOpen={viewModal}
+        onRequestClose={() => setViewModal(false)}
+        contentLabel="Example Modal"
+        className="ConnectModal"
+        overlayClassName="ConnectModalOverlay"
+      >
+        <div className="ConnectModalMain d-flex flex-column justify-content-center align-items-center">
+          <div className="ModalHeader d-flex flex-column justify-content-between">
+            <div className="d-flex justify-content-between">
+              <span className="ModalHeaderText"><img src={logo} className="ModalLogo" alt='' /></span><span onClick={() => setViewModal(false)}><CloseOutlined className="ModalCloseBtn" /></span>
+            </div>
+            <div className="ModalDescription d-flex flex-column align-items-center">
+              <span className="ModalTitle">Congratulations!</span>
+              <a href="https://testnets.nftrade.com/assets/fuji/0xd151621eedbefb10704acebe1c841550cb8ac83e" className="ModalText" target="_blank"
+                rel="noreferrer">You have successfully minted your NAVIKATZ NFT !</a>
+            </div>
+          </div>
+
+        </div>
+      </Modal>
       <div className="CounterInput">
         <span
           className="ArrowIcon leftIcon "

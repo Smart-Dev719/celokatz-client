@@ -8,34 +8,23 @@ import store from "./redux/store";
 import { Provider } from "react-redux";
 
 function App() {
-  // const [account, setAccount] = useState(); // state variable to set account.
-  // useEffect(async () => {
-  //   const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
-  // }, []);
-  const [metamaskConnected, setMetamaskConnected] = useState(false);
+
+  const [metamaskConnected, setMetamaskConnnected] = useState(false);
   const [account, setAccount] = useState();
-  const [preLoading, setPreLoading] = useState(false);
   const [networkId, setNetworkId] = useState();
   const [isMetamask, setIsMetamask] = useState(true);
 
-  useEffect(() => {
-    async function listenMMAccount() {
-      if (window.ethereum) {
-        window.ethereum.on("accountsChanged", async function () {
-          connectToMetamask();
-        });
-        window.ethereum.on("chainChanged", async function () {
-          connectToMetamask();
-        });
+  useEffect(async () => {
+    await loadWeb3().then((data) => {
+      if (data !== false) {
+        loadBlockchainData();
       }
-    }
-    listenMMAccount();
+    });
   }, []);
 
-  const connectToMetamask = async () => {
+  const loadWeb3 = async () => {
     if (window.ethereum) {
       window.web3 = new Web3(window.ethereum);
-      window.ethereum.enable();
     } else if (window.web3) {
       window.web3 = new Web3(window.web3.currentProvider);
     } else {
@@ -45,20 +34,31 @@ function App() {
       setIsMetamask(false);
       return false;
     }
+  };
+
+  const loadBlockchainData = async () => {
     const web3 = window.web3;
     const accounts = await web3.eth.getAccounts();
     const networkId = await web3.eth.net.getId();
     setNetworkId(networkId);
+
     if (accounts.length == 0) {
-      setMetamaskConnected(false);
+      setMetamaskConnnected(false);
     } else {
-      const accounts = await web3.eth.getAccounts();
-      console.log("connect info:", accounts);
+      setMetamaskConnnected(true);
       setAccount(accounts[0]);
-      console.log(accounts[0]);
-      setMetamaskConnected(true);
     }
+
+    window.ethereum.on("accountsChanged", (accounts) => {
+      if (accounts.length > 0) setAccount(accounts[0]);
+      else setAccount();
+    });
+    window.ethereum.on("networkChanged", (networkId) => {
+      setNetworkId(networkId);
+    });
   };
+
+
   return (
     <Provider store={store}>
       {networkId != 42220 && metamaskConnected && (
@@ -74,11 +74,9 @@ function App() {
       <div className="App">
         <Navbar />
         <Banner
-          preLoading={preLoading}
-          setPreLoading={setPreLoading}
-          account={account}
           metamaskConnected={metamaskConnected}
-          connectToMetamask={connectToMetamask}
+          setMetamaskConnnected={setMetamaskConnnected}
+          account={account}
         />
       </div>
     </Provider>
