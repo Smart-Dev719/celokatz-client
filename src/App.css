@@ -299,6 +299,12 @@ button:hover {
   width: 100%;
 }
 
+@media (max-width: 900px) {
+  .ConnectModal {
+    width: 80%;
+  }
+}
+
 @media (max-width: 580px) {
   .nft img {
     width: 90%;
@@ -318,5 +324,24 @@ button:hover {
 
   .MintBtn {
     width: 90%;
+    font-size: 17px;
+    height: 40px;
+    border-radius: 20px;
+  }
+
+  .ModalTitle {
+    font-size: 33px;
+  }
+
+  .ModalText {
+    font-size: 20px;
+  }
+
+  .ModalLogo {
+    width: 120px;
+  }
+
+  .ModalCloseBtn {
+    font-size: 20px;
   }
 }
