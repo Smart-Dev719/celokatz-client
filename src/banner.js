@@ -20,7 +20,7 @@ const Banner = (props) => {
   const mintable = useSelector((state) => state.mint);
   const [mintLoading, setMintLoading] = useState(false);
   const [mintStatus, setMintStatus] = useState(false);
-  const [viewModal, setViewModal] = useState(true);
+  const [viewModal, setViewModal] = useState(false);
   const [networkId, setNetworkId] = useState();
   const [modal, setModal] = useState(false);
 
