@@ -19,9 +19,9 @@ export const mintNft = async (price, tokenAmount, address) => {
     if (window.web3) {
         var web3 = window.web3;
 
-        const CeloKatzWarriors = require("./CeloKatzWarriors.json");
+        const NaviKatzWarriors = require("./NaviKatzWarriors.json");
         const add = web3.utils.toChecksumAddress(process.env.REACT_APP_ADDRESS);
-        const contract = new web3.eth.Contract(CeloKatzWarriors.abi, add);
+        const contract = new web3.eth.Contract(NaviKatzWarriors.abi, add);
         let e;
         try {
             var correctPrice = web3.utils.toBN(
