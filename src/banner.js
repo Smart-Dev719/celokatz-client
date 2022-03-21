@@ -153,19 +153,19 @@ const Banner = (props) => {
         //   </button>
         // )
 
-        // <button className="MintBtn" onClick={handleMint}>
-        //   MINT YOUR NAVIKATZ NFTS!
-        // </button>
+        <button className="MintBtn" onClick={handleMint}>
+          MINT YOUR NAVIKATZ NFTS!
+        </button>
 
+      ) : (
+        // <button className="MintBtn"
+        //   onClick={() => {
+        //     handleConnectWallet();
+        //   }}>
+        //   CONNECT WALLET
+        // </button>
         <button className="MintBtn" >
           MINTING WILL START SOON!
-        </button>
-      ) : (
-        <button className="MintBtn"
-          onClick={() => {
-            handleConnectWallet();
-          }}>
-          CONNECT WALLET
         </button>
       )}
     </div>
