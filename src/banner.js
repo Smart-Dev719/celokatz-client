@@ -152,8 +152,13 @@ const Banner = (props) => {
         //     MINT YOUR NAVIKATZ NFTS!
         //   </button>
         // )
-        <button className="MintBtn" onClick={handleMint}>
-          MINT YOUR NAVIKATZ NFTS!
+
+        // <button className="MintBtn" onClick={handleMint}>
+        //   MINT YOUR NAVIKATZ NFTS!
+        // </button>
+
+        <button className="MintBtn" >
+          MINTING WILL START SOON!
         </button>
       ) : (
         <button className="MintBtn"
