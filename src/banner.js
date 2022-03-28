@@ -158,15 +158,15 @@ const Banner = (props) => {
         </button>
 
       ) : (
-        // <button className="MintBtn"
-        //   onClick={() => {
-        //     handleConnectWallet();
-        //   }}>
-        //   CONNECT WALLET
-        // </button>
-        <button className="MintBtn" >
-          MINTING WILL START SOON!
+        <button className="MintBtn"
+          onClick={() => {
+            handleConnectWallet();
+          }}>
+          CONNECT WALLET
         </button>
+        // <button className="MintBtn" >
+        //   Please register on our Whitelists!
+        // </button>
       )}
     </div>
   );
